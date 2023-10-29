@@ -1,0 +1,11 @@
+{
+  "name": "fetch-receipt-processor",
+  "version": "1.0.0",
+  "description": "Submission for https://github.com/fetch-rewards/receipt-processor-challenge",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Jamie",
+  "license": "ISC"
+}
