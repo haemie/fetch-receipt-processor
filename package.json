@@ -5,10 +5,10 @@
   "main": "server.js",
   "scripts": {
     "test": "jest",
-    "unit": "ts-jest ./server/pointsCalculation.test.js",
+    "unit": "jest ./dist/pointsCalculation.test.js",
     "integration": "jest integration.test.js",
-    "start": "node ./dist/server/server.js",
-    "dev": "npx nodemon ./dist/server/server.js",
+    "start": "node ./dist/server.js",
+    "dev": "npx nodemon ./dist/server.js",
     "tsc": "tsc",
     "tsdev": "ts-node-dev --respawn --transpile-only ./server/server.ts"
   },
