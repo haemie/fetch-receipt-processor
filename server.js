@@ -10,7 +10,7 @@ const savedPoints = new Map();
 app.use(cors());
 app.use(express.json());
 
-// handler for post requests to /receipts/process
+// handler for POST requests to /receipts/process
 app.post('/receipts/process', (req, res) => {
   console.log('receipt process request received');
   const { retailer, purchaseDate, purchaseTime, items, total } = req.body;
@@ -24,21 +24,23 @@ app.post('/receipts/process', (req, res) => {
     pointCalculation.twoToFour(purchaseDate, purchaseTime);
   const receiptID = uuidv4();
   savedPoints.set(receiptID, points);
-  res.status(200).json(receiptID);
+  return res.status(200).json(receiptID);
 });
 
+// handler for GET requests to /receipts/:id/points
 app.get('/receipts/:id/points', (req, res) => {
   console.log('receipt get points request received');
   const targetID = req.params.id;
   if (savedPoints.has(targetID)) {
     const pointsValue = savedPoints.get(targetID);
-    res.status(200).json(pointsValue);
+    return res.status(200).json(pointsValue);
   }
-  res.status(400).json('invalid id');
+  return res.status(404).json('No receipt found for that id');
 });
 
+// return an error status for all other requests
 app.use((req, res) => {
-  res.status(400).json('invalid request');
+  return res.status(404).json('endpoint does not exist!');
 });
 
 app.listen(port, () => {
