@@ -10,7 +10,7 @@ app.use(express.json());
 
 // handler for POST requests to /receipts/process
 app.post('/receipts/process', (req, res) => {
-  console.log('receipt process request received');
+  // console.log('receipt process request received');
   const { retailer, purchaseDate, purchaseTime, items, total } = req.body;
   let points =
     pointCalculation.retailerName(retailer) +
@@ -22,16 +22,16 @@ app.post('/receipts/process', (req, res) => {
     pointCalculation.twoToFour(purchaseDate, purchaseTime);
   const receiptID = uuidv4();
   savedPoints.set(receiptID, points);
-  return res.status(200).json(receiptID);
+  return res.status(200).json({ id: receiptID });
 });
 
 // handler for GET requests to /receipts/:id/points
 app.get('/receipts/:id/points', (req, res) => {
-  console.log('receipt get points request received');
+  // console.log('receipt get points request received');
   const targetID = req.params.id;
   if (savedPoints.has(targetID)) {
     const pointsValue = savedPoints.get(targetID);
-    return res.status(200).json(pointsValue);
+    return res.status(200).json({ points: pointsValue });
   }
   return res.status(404).json('No receipt found for that id');
 });

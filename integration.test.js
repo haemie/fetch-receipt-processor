@@ -69,10 +69,10 @@ describe('Passes example receipts', () => {
     });
     const receiptID = await postResponse.json();
     const pointResponse = await fetch(
-      `http://localhost:3000/receipts/${receiptID}/points`
+      `http://localhost:3000/receipts/${receiptID.id}/points`
     );
-    const points = Number(await pointResponse.json());
-    await expect(points).toBe(exampleResult1);
+    const points = await pointResponse.json();
+    await expect(Number(points.points)).toBe(exampleResult1);
   });
 
   it('should fulfill example receipt 2', async () => {
@@ -85,9 +85,9 @@ describe('Passes example receipts', () => {
     });
     const receiptID = await postResponse.json();
     const pointResponse = await fetch(
-      `http://localhost:3000/receipts/${receiptID}/points`
+      `http://localhost:3000/receipts/${receiptID.id}/points`
     );
-    const points = Number(await pointResponse.json());
-    await expect(points).toBe(exampleResult2);
+    const points = await pointResponse.json();
+    await expect(Number(points.points)).toBe(exampleResult2);
   });
 });
