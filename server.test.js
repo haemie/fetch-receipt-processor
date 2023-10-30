@@ -120,26 +120,36 @@ describe('point calculations for example receipt 2', () => {
   });
 });
 
-// describe('Passes example receipts', async () => {
-//   it('should fulfill example receipt 1', async () => {
-//     const response = await fetch('/receipts/process', {
-//       method: 'post',
-//       headers: {
-//         'Content-type': 'application/json',
-//       },
-//       body: JSON.stringify({ exampleReceipt1 }),
-//     });
-//     expect(response).toBe(exampleResult1);
-//   });
+describe('Passes example receipts', () => {
+  it('should fulfill example receipt 1', async () => {
+    const postResponse = await fetch('http://localhost:3000/receipts/process', {
+      method: 'post',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(exampleReceipt1),
+    });
+    const receiptID = await postResponse.json();
+    const pointResponse = await fetch(
+      `http://localhost:3000/receipts/${receiptID}/points`
+    );
+    const points = Number(await pointResponse.json());
+    await expect(points).toBe(exampleResult1);
+  });
 
-//   it('should fulfill example receipt 2', async () => {
-//     const response = await fetch('/receipts/process', {
-//       method: 'post',
-//       headers: {
-//         'Content-type': 'application/json',
-//       },
-//       body: JSON.stringify({ exampleReceipt2 }),
-//     });
-//     expect(response).toBe(exampleResult2);
-//   });
-// });
+  it('should fulfill example receipt 2', async () => {
+    const postResponse = await fetch('http://localhost:3000/receipts/process', {
+      method: 'post',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(exampleReceipt2),
+    });
+    const receiptID = await postResponse.json();
+    const pointResponse = await fetch(
+      `http://localhost:3000/receipts/${receiptID}/points`
+    );
+    const points = Number(await pointResponse.json());
+    await expect(points).toBe(exampleResult2);
+  });
+});
