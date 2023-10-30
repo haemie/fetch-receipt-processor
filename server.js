@@ -27,6 +27,13 @@ app.post('/receipts/process', (req, res) => {
   res.status(200).json(receiptID);
 });
 
+app.get('/receipts/:id/points', (req, res) => {
+  console.log('receipt get points request received');
+  const targetID = req.params.id;
+  const pointsValue = savedPoints.get(targetID);
+  res.status(200).json(pointsValue);
+});
+
 app.listen(port, () => {
   console.log(`receipt processor listening on port ${port}`);
 });
