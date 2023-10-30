@@ -14,4 +14,5 @@ COPY --from=dev /app/package-lock.json .
 RUN npm ci
 COPY . .
 EXPOSE 3000
-CMD [ "node", "server.js" ]
+ENV PORT=3000
+CMD [ "node", "server/server.js" ]
