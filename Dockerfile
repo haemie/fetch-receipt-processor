@@ -13,4 +13,5 @@ COPY --from=dev /app/package.json .
 COPY --from=dev /app/package-lock.json .
 RUN npm ci
 COPY . .
+EXPOSE 3000
 CMD [ "node", "server.js" ]
