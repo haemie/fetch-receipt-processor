@@ -1,13 +1,11 @@
 const express = require('express');
 const app = express();
 const port = 3000;
-const cors = require('cors');
 const pointCalculation = require('./pointCalculation');
 const { v4: uuidv4 } = require('uuid');
 
 const savedPoints = new Map();
 
-app.use(cors());
 app.use(express.json());
 
 // handler for POST requests to /receipts/process
@@ -20,7 +18,7 @@ app.post('/receipts/process', (req, res) => {
     pointCalculation.roundQuarterTotal(total) +
     pointCalculation.itemsCount(items) +
     pointCalculation.itemDescriptionCheck(items) +
-    pointCalculation.oddDay(purchaseDate) +
+    pointCalculation.oddDay(purchaseDate, purchaseTime) +
     pointCalculation.twoToFour(purchaseDate, purchaseTime);
   const receiptID = uuidv4();
   savedPoints.set(receiptID, points);

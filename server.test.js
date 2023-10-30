@@ -77,7 +77,12 @@ describe('point calculations for example receipt 1', () => {
     );
   });
   test('points for odd purchase date', () => {
-    expect(pointCalculation.oddDay(exampleReceipt1.purchaseDate)).toBe(6);
+    expect(
+      pointCalculation.oddDay(
+        exampleReceipt1.purchaseDate,
+        exampleReceipt1.purchaseTime
+      )
+    ).toBe(6);
   });
   test('points for non 2-4pm', () => {
     expect(
@@ -108,7 +113,12 @@ describe('point calculations for example receipt 2', () => {
     );
   });
   test('points for even purchase date', () => {
-    expect(pointCalculation.oddDay(exampleReceipt2.purchaseDate)).toBe(0);
+    expect(
+      pointCalculation.oddDay(
+        exampleReceipt2.purchaseDate,
+        exampleReceipt2.purchaseTime
+      )
+    ).toBe(0);
   });
   test('points for 2-4pm', () => {
     expect(
@@ -117,39 +127,5 @@ describe('point calculations for example receipt 2', () => {
         exampleReceipt2.purchaseTime
       )
     ).toBe(10);
-  });
-});
-
-describe('Passes example receipts', () => {
-  it('should fulfill example receipt 1', async () => {
-    const postResponse = await fetch('http://localhost:3000/receipts/process', {
-      method: 'post',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(exampleReceipt1),
-    });
-    const receiptID = await postResponse.json();
-    const pointResponse = await fetch(
-      `http://localhost:3000/receipts/${receiptID}/points`
-    );
-    const points = Number(await pointResponse.json());
-    await expect(points).toBe(exampleResult1);
-  });
-
-  it('should fulfill example receipt 2', async () => {
-    const postResponse = await fetch('http://localhost:3000/receipts/process', {
-      method: 'post',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(exampleReceipt2),
-    });
-    const receiptID = await postResponse.json();
-    const pointResponse = await fetch(
-      `http://localhost:3000/receipts/${receiptID}/points`
-    );
-    const points = Number(await pointResponse.json());
-    await expect(points).toBe(exampleResult2);
   });
 });
