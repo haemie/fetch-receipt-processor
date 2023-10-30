@@ -30,9 +30,11 @@ module.exports = {
   itemDescriptionCheck: (items) => {
     let points = 0;
     items.forEach((e) => {
-      if (e.shortDescription && e.shortDescription.length % 3 === 0) {
+      const { shortDescription, price } = e;
+      const trimmedDescription = shortDescription.trim(); // remove leading and tailing spaces from desc
+      if (trimmedDescription && trimmedDescription.length % 3 === 0) {
         // if there is no shortDescription, default to 0
-        points += Math.ceil(Number(e.price || 0) * 0.2); // if there is no price, default to 0
+        points += Math.ceil(Number(price || 0) * 0.2); // if there is no price, default to 0
       }
     });
     return points;
