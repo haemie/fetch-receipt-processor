@@ -39,10 +39,10 @@ module.exports = {
     });
     return points;
   },
-  // 6 points if the day in the purchase date is odd.
-  oddDate: (purchaseDate) => {
+  // 6 points if the day in the purchase day is odd. day NOT DATE
+  oddDay: (purchaseDate) => {
     const date = new Date(purchaseDate);
-    const day = date.getDate();
+    const day = date.getDay();
     if (day % 2 === 1) {
       return 6;
     } else {
@@ -53,10 +53,10 @@ module.exports = {
   twoToFour: (purchaseDate, purchaseTime) => {
     const date = new Date(`${purchaseDate} ${purchaseTime}`);
     const hour = date.getHours();
-    if (hour > 14 && hour < 16) {
-      return 10;
-    } else {
-      return 0;
+    const minute = date.getMinutes();
+    if (hour >= 14 && hour < 16) {
+      if (minute !== 0) return 10;
     }
+    return 0;
   },
 };
