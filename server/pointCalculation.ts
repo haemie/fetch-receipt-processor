@@ -1,7 +1,5 @@
-type Item = {
-  shortDescription: string,
-  price: string,
-};
+import { Item } from './types'
+
 
 module.exports = {
   // One point for every alphanumeric character in the retailer name.

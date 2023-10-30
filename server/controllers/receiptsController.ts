@@ -1,24 +1,14 @@
 const pointCalculation = require('../pointCalculation');
 import { Request, Response, NextFunction } from 'express';
 import {v4 as uuidv4} from 'uuid';
-
-type Item = {
-  shortDescription: string,
-  price: string,
-}
-type Receipt = {
-  retailer: string;
-  purchaseDate: string;
-  purchaseTime: string;
-  items: Item[];
-  total: string;
-}
-
-type SavedPoints = Map<string, number>;
+import { Receipt, SavedPoints } from '../types'
 
 const savedPoints : SavedPoints = new Map();
 
 module.exports = {
+  validateReceipt: (req: Request, res: Response, next: NextFunction) => {
+
+  },
   // handler for POST requests to /receipts/process
   processReceipt: (req: Request, res: Response, next: NextFunction) => {
     // console.log('receipt process request received');
