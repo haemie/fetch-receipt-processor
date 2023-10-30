@@ -1,4 +1,4 @@
-const pointCalculation = require('./pointCalculation');
+const pointCalculation = require('./server/pointCalculation');
 
 const exampleReceipt1 = {
   retailer: 'Target',
