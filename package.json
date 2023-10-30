@@ -4,7 +4,9 @@
   "description": "Submission for https://github.com/fetch-rewards/receipt-processor-challenge",
   "main": "server.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "unit": "jest server.test.js",
+    "integration": "jest integration.test.js"
   },
   "author": "Jamie",
   "license": "ISC",
