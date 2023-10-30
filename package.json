@@ -6,7 +6,9 @@
   "scripts": {
     "test": "jest",
     "unit": "jest server.test.js",
-    "integration": "jest integration.test.js"
+    "integration": "jest integration.test.js",
+    "start": "node server.js",
+    "dev": "npx nodemon server.js"
   },
   "author": "Jamie",
   "license": "ISC",
