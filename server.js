@@ -30,8 +30,15 @@ app.post('/receipts/process', (req, res) => {
 app.get('/receipts/:id/points', (req, res) => {
   console.log('receipt get points request received');
   const targetID = req.params.id;
-  const pointsValue = savedPoints.get(targetID);
-  res.status(200).json(pointsValue);
+  if (savedPoints.has(targetID)) {
+    const pointsValue = savedPoints.get(targetID);
+    res.status(200).json(pointsValue);
+  }
+  res.status(400).json('invalid id');
+});
+
+app.use((req, res) => {
+  res.status(400).json('invalid request');
 });
 
 app.listen(port, () => {
