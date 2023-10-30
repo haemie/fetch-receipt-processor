@@ -1,13 +1,18 @@
+type Item = {
+  shortDescription: string,
+  price: string,
+};
+
 module.exports = {
   // One point for every alphanumeric character in the retailer name.
-  retailerName: (retailer) => {
+  retailerName: (retailer : string) => {
     const alphanumericRetailer = retailer
       .split('')
       .filter((e) => /[a-zA-Z0-9]/.test(e));
     return alphanumericRetailer.length;
   },
   // 50 points if the total is a round dollar amount with no cents.
-  roundTotal: (total) => {
+  roundTotal: (total : string) => {
     if (Number(total) % 1 === 0) {
       return 50;
     } else {
@@ -15,7 +20,7 @@ module.exports = {
     }
   },
   // 25 points if the total is a multiple of 0.25.
-  roundQuarterTotal: (total) => {
+  roundQuarterTotal: (total : string) => {
     if (Number(total) % 0.25 === 0) {
       return 25;
     } else {
@@ -23,11 +28,11 @@ module.exports = {
     }
   },
   // 5 points for every two items on the receipt.
-  itemsCount: (items) => {
+  itemsCount: (items : Item[]) => {
     return Math.floor(items.length / 2) * 5;
   },
   // If the trimmed length of the item description is a multiple of 3, multiply the price by 0.2 and round up to the nearest integer. The result is the number of points earned.
-  itemDescriptionCheck: (items) => {
+  itemDescriptionCheck: (items : Item[] ) => {
     let points = 0;
     items.forEach((e) => {
       const { shortDescription, price } = e;
@@ -40,7 +45,7 @@ module.exports = {
     return points;
   },
   // 6 points if the day in the purchase date is odd
-  oddDay: (purchaseDate, purchaseTime) => {
+  oddDay: (purchaseDate : string, purchaseTime : string) => {
     const date = new Date(`${purchaseDate}T${purchaseTime}:00Z`);
     const day = date.getUTCDate();
     if (day % 2 === 1) {
@@ -50,7 +55,7 @@ module.exports = {
     }
   },
   // 10 points if the time of purchase is after 2:00pm and before 4:00pm.
-  twoToFour: (purchaseDate, purchaseTime) => {
+  twoToFour: (purchaseDate : string, purchaseTime : string) => {
     const date = new Date(`${purchaseDate}T${purchaseTime}:00Z`);
     const hour = date.getUTCHours();
     const minute = date.getUTCMinutes();

@@ -1,14 +1,30 @@
 const pointCalculation = require('../pointCalculation');
-const { v4: uuidv4 } = require('uuid');
+import { Request, Response, NextFunction } from 'express';
+import {v4 as uuidv4} from 'uuid';
 
-const savedPoints = new Map();
+type Item = {
+  shortDescription: string,
+  price: string,
+}
+type Receipt = {
+  retailer: string;
+  purchaseDate: string;
+  purchaseTime: string;
+  items: Item[];
+  total: string;
+}
+
+type SavedPoints = Map<string, number>;
+
+const savedPoints : SavedPoints = new Map();
 
 module.exports = {
   // handler for POST requests to /receipts/process
-  processReceipt: (req, res, next) => {
+  processReceipt: (req: Request, res: Response, next: NextFunction) => {
     // console.log('receipt process request received');
-    const { retailer, purchaseDate, purchaseTime, items, total } = req.body;
-    let points =
+    const receipt: Receipt = req.body;
+    const { retailer, purchaseDate, purchaseTime, items, total } = receipt;
+    let points : number =
       pointCalculation.retailerName(retailer) +
       pointCalculation.roundTotal(total) +
       pointCalculation.roundQuarterTotal(total) +
@@ -22,7 +38,7 @@ module.exports = {
     return next();
   },
   // handler for GET requests to /receipts/:id/points
-  getPoints: (req, res, next) => {
+  getPoints: (req: Request, res: Response, next: NextFunction) => {
     // console.log('receipt get points request received');
     const targetID = req.params.id;
     if (savedPoints.has(targetID)) {
