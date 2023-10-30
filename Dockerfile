@@ -3,6 +3,7 @@ FROM node:bookworm-slim AS dev
 WORKDIR /app
 COPY . .
 RUN npm i
+RUN npm run tsc
 RUN npm test
 
 # second stage for production without devdependencies
@@ -15,4 +16,4 @@ RUN npm ci
 COPY . .
 EXPOSE 3000
 ENV PORT=3000
-CMD [ "node", "server/server.js" ]
+CMD [ "node", "dist/server.js" ]
