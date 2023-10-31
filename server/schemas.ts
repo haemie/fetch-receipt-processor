@@ -6,7 +6,7 @@ require("ajv-errors")(ajv /*, {singleError: true} */)
 // declare the default formats we are using, and add custom formats according to api requirements
 addFormats(ajv, ["date", "time", "uuid"] )
 ajv.addFormat('uuid', "^\\S+$")
-// ajv.addFormat('retailer', "^\\S+$") // pattern from api, but should not fail according to example
+ajv.addFormat('retailer',  /^.*\S.*$/) // pattern from api, but should not fail according to example
 ajv.addFormat('total', "^\\d+\\.\\d{2}$")
 ajv.addFormat('shortDescription', "^[\\w\\s\\-]+$")
 ajv.addFormat('price', "^\\d+\\.\\d{2}$")
@@ -30,7 +30,7 @@ const itemSchema = {
 const receiptSchema = {
   type: "object",
   properties: {
-    retailer: {type: "string", errorMessage: {
+    retailer: {type: "string", format: "retailer", errorMessage: {
       type: 'retailer must be a string following', 
     }},
     purchaseDate: {type: "string", format: "date", errorMessage: {
