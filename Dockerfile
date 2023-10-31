@@ -13,7 +13,7 @@ ENV NODE_ENV=production
 COPY --from=dev /app/package.json .
 COPY --from=dev /app/package-lock.json .
 RUN npm ci
-COPY . .
+COPY --from=dev /app/dist ./dist
 EXPOSE 3000
 ENV PORT=3000
 CMD [ "node", "dist/server.js" ]
