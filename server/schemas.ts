@@ -24,7 +24,8 @@ const itemSchema = {
     price: {type: "string", format: "price", errorMessage: {
       type: 'price must be a string following "^\\d+\\.\\d{2}$"', 
     }}
-  }
+  },
+  required: ["shortDescription", "price"]
 }
 
 const receiptSchema = {
@@ -45,7 +46,8 @@ const receiptSchema = {
     total: {type: "string", format: "total", errorMessage: {
       type: 'total must be a string following "^\\d+\\.\\d{2}$"',
     } }
-  }
+  },
+  required: ["retailer", "purchaseDate", "purchaseTime", "items", "total"],
 }
 
 const idSchema = {
