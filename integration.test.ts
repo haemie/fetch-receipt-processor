@@ -108,7 +108,6 @@ describe('Fails bad receipts', () => {
     });
     const receiptID = await postResponse.json();
     expect(postResponse.status).toBe(400)
-    console.log(receiptID)
     await expect(receiptID).toBe('The receipt is invalid');
   });
 
@@ -123,7 +122,6 @@ describe('Fails bad receipts', () => {
     });
     const receiptID = await postResponse.json();
     expect(postResponse.status).toBe(400)
-    console.log(receiptID)
     await expect(receiptID).toBe('The receipt is invalid');
   });
 
@@ -140,7 +138,6 @@ describe('Fails bad receipts', () => {
     });
     const receiptID = await postResponse.json();
     expect(postResponse.status).toBe(400)
-    console.log(receiptID)
     await expect(receiptID).toBe('The receipt is invalid');
   });
 
@@ -155,7 +152,6 @@ describe('Fails bad receipts', () => {
     });
     const receiptID = await postResponse.json();
     expect(postResponse.status).toBe(400)
-    console.log(receiptID)
     await expect(receiptID).toBe('The receipt is invalid');
   });
   
@@ -172,7 +168,6 @@ describe('Fails bad receipts', () => {
     });
     const receiptID = await postResponse.json();
     expect(postResponse.status).toBe(400)
-    console.log(receiptID)
     await expect(receiptID).toBe('The receipt is invalid');
   });
 
@@ -187,7 +182,6 @@ describe('Fails bad receipts', () => {
     });
     const receiptID = await postResponse.json();
     expect(postResponse.status).toBe(400)
-    console.log(receiptID)
     await expect(receiptID).toBe('The receipt is invalid');
   });
 
@@ -204,7 +198,6 @@ describe('Fails bad receipts', () => {
     });
     const receiptID = await postResponse.json();
     expect(postResponse.status).toBe(400)
-    console.log(receiptID)
     await expect(receiptID).toBe('The receipt is invalid');
   });
 
@@ -219,7 +212,6 @@ describe('Fails bad receipts', () => {
     });
     const receiptID = await postResponse.json();
     expect(postResponse.status).toBe(400)
-    console.log(receiptID)
     await expect(receiptID).toBe('The receipt is invalid');
   });
   
@@ -236,7 +228,6 @@ describe('Fails bad receipts', () => {
     });
     const receiptID = await postResponse.json();
     expect(postResponse.status).toBe(400)
-    console.log(receiptID)
     await expect(receiptID).toBe('The receipt is invalid');
   });
 
@@ -251,7 +242,6 @@ describe('Fails bad receipts', () => {
     });
     const receiptID = await postResponse.json();
     expect(postResponse.status).toBe(400)
-    console.log(receiptID)
     await expect(receiptID).toBe('The receipt is invalid');
   });
 
@@ -268,7 +258,6 @@ describe('Fails bad receipts', () => {
     });
     const receiptID = await postResponse.json();
     expect(postResponse.status).toBe(400)
-    console.log(receiptID)
     await expect(receiptID).toBe('The receipt is invalid');
   });
 
@@ -285,7 +274,6 @@ describe('Fails bad receipts', () => {
     });
     const receiptID = await postResponse.json();
     expect(postResponse.status).toBe(400)
-    console.log(receiptID)
     await expect(receiptID).toBe('The receipt is invalid');
   });
 });
