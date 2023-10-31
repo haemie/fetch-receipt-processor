@@ -2,12 +2,26 @@ const pointCalculation = require('../pointCalculation');
 import { Request, Response, NextFunction } from 'express';
 import {v4 as uuidv4} from 'uuid';
 import { Receipt, SavedPoints } from '../types'
+import { validateReceiptSchema, validateIdSchema } from '../schemas';
 
 const savedPoints : SavedPoints = new Map();
 
 module.exports = {
+  // validate input receipt according to given requirements
   validateReceipt: (req: Request, res: Response, next: NextFunction) => {
-
+    if (!validateReceiptSchema(req.body)) {
+      // console.log(validateReceiptSchema.errors)
+      return res.status(400).json('The receipt is invalid');
+    } else {
+      return next();
+    }
+  },
+  validateId: (req: Request, res: Response, next: NextFunction) => {
+    if (!validateIdSchema(req.params.id)) {
+      return res.status(400).json('The id is invalid');
+    } else {
+      return next();
+    }
   },
   // handler for POST requests to /receipts/process
   processReceipt: (req: Request, res: Response, next: NextFunction) => {
