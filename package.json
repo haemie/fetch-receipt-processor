@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "jest",
-    "unit": "jest ./dist/pointsCalculation.test.js",
+    "unit": "jest ./dist/pointsCalculation.test.js ./dist/schemas.test.js",
     "integration": "jest integration.test.ts",
     "start": "node ./dist/server.js",
     "dev": "npx nodemon ./dist/server.js",
