@@ -168,6 +168,10 @@ Once Node.js and npm are installed,
    ```sh
    npm install
    ```
+4. Transpile typescript files
+   ```sh
+   npm run tsc
+   ```
 
 ### Usage
 
