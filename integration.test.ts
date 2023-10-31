@@ -277,3 +277,22 @@ describe('Fails bad receipts', () => {
     await expect(receiptID).toBe('The receipt is invalid');
   });
 });
+
+describe('Fails bad receipt IDs', () => {
+  it('should 404 error on nonexistant receipt', async () => {
+    const pointResponse = await fetch(
+      `http://localhost:3000/receipts/this_doesn't_exist/points`
+    );
+    const points = await pointResponse.json();
+    expect(pointResponse.status).toBe(404)
+    await expect(points).toBe('No receipt found for that id');
+  });
+  it('should 400 error on invalid receipt', async () => {
+    const pointResponse = await fetch(
+      `http://localhost:3000/receipts/ /points`
+    );
+    const points = await pointResponse.json();
+    expect(pointResponse.status).toBe(400)
+    await expect(points).toBe('The id is invalid');
+  })
+})
